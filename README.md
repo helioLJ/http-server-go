@@ -79,6 +79,32 @@ The server logs each request with the following information:
 
 Logs are printed to the console.
 
+## Roadmap
+
+1. Implement unit tests for all major functions:
+   - Test request handling for different endpoints
+   - Test file operations
+   - Test concurrent connections
+   - Test gzip compression
+
+2. Add support for HTTPS
+
+3. Implement request logging to a file
+
+4. Add configuration file support for server settings
+
+5. Implement basic authentication for certain endpoints
+
+6. Add support for serving static files
+
+7. Implement rate limiting
+
+8. Add support for WebSocket connections
+
+9. Implement a simple routing system for easier endpoint management
+
+10. Add support for JSON responses
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
