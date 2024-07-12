@@ -1,38 +1,84 @@
-[![progress-banner](https://backend.codecrafters.io/progress/http-server/b0f4b72b-44d8-45ab-a6d8-21681d601e06)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# Go HTTP Server
 
-This is a starting point for Go solutions to the
-["Build Your Own HTTP server" Challenge](https://app.codecrafters.io/courses/http-server/overview).
+This is a simple HTTP server written in Go that handles various types of requests and supports concurrent connections.
 
-[HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is the
-protocol that powers the web. In this challenge, you'll build a HTTP/1.1 server
-that is capable of serving multiple clients.
+## Features
 
-Along the way you'll learn about TCP servers,
-[HTTP request syntax](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html),
-and more.
+- Handles GET and POST requests
+- Supports concurrent connections
+- Implements several endpoints:
+- Root endpoint (`/`)
+- Echo endpoint (`/echo/<message>`)
+- User-Agent endpoint (`/user-agent`)
+- File handling endpoints (`/files/<filename>`)
+- Supports gzip compression for responses
+- Logs incoming requests and their statuses
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+## Prerequisites
 
-# Passing the first stage
+- Go 1.16 or higher
 
-The entry point for your HTTP server implementation is in `app/server.go`. Study
-and uncomment the relevant code, and push your changes to pass the first stage:
+## Installation
 
-```sh
-git add .
-git commit -m "pass 1st stage" # any msg
-git push origin master
-```
+1. Clone this repository:
+git clone https://github.com/helioLJ/http-server-go.git
+cd http-server-go
 
-Time to move on to the next stage!
 
-# Stage 2 & beyond
+2. Build the server:
+./start_server.sh
 
-Note: This section is for stages 2 and beyond.
 
-1. Ensure you have `go (1.19)` installed locally
-1. Run `./your_server.sh` to run your program, which is implemented in
-   `app/server.go`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
+## Usage
+
+### Starting the Server
+
+Run the server using the start script:
+
+./start_server.sh [--directory <path>]
+
+
+The `--directory` flag is optional and specifies the directory for file operations. If not provided, the current directory will be used.
+
+### Endpoints
+
+1. **Root Endpoint (`/`)**
+   - Returns a 200 OK status with an empty body.
+
+2. **Echo Endpoint (`/echo/<message>`)**
+   - Returns the `<message>` in the response body.
+
+3. **User-Agent Endpoint (`/user-agent`)**
+   - Returns the User-Agent header from the request.
+
+4. **File Handling Endpoints (`/files/<filename>`)**
+   - GET: Retrieves the content of the specified file.
+   - POST: Creates a new file with the specified name and content.
+
+### Concurrent Connections
+
+The server supports handling multiple connections concurrently. You can test this using the provided `concurrent_connections.sh` script:
+
+./concurrent_connections.sh
+
+
+This script sends three concurrent requests to the server.
+
+## Configuration
+
+The server listens on port 4221 by default. To change this, modify the `net.Listen()` call in the `main()` function of `server.go`.
+
+## Logging
+
+The server logs each request with the following information:
+- Timestamp
+- Remote address
+- HTTP method
+- Requested path
+- Response status
+
+Logs are printed to the console.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
